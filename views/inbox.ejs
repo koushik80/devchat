@@ -11,7 +11,7 @@
               <% if (conversation.participant.avatar) { %>
               <img src="./uploads/avatars/<%= conversation.participant.avatar %>" alt="<%= conversation.participant.name %>" />
               <% } else { %>
-                <img src="./images/nophoto.png" />
+                <img src="./images/nophoto.png" alt="" />
               <% } %>
               <div class="title-text"><%= conversation.participant.name %></div>
               <div class="conversation-date"><%= moment(conversation.last_updated).fromNow() %></div>
@@ -21,17 +21,17 @@
               <% if (conversation.creator.avatar) { %>
               <img src="./uploads/avatars/<%= conversation.creator.avatar %>" alt="<%= conversation.creator.name %>" />
               <% } else { %>
-                <img src="./images/nophoto.png" />
+                <img src="./images/nophoto.png" alt=""/>
               <% } %>
               <div class="title-text"><%= conversation.creator.name %></div>
               <div class="conversation-date"><%= moment(conversation.last_updated).fromNow() %></div>
             </div>
           <% } %>
         <% }); %>
-        
+
         <!-- show no conversation placeholder image for 0 conversations -->
         <% if(data && data.length === 0) { %>
-          <div class="nothing"><img src="./images/no-conversation.svg"></div>
+          <div class="nothing"><img src="./images/no-conversation.svg" alt="" /></div>
         <% } %>
       </div>
 
@@ -78,7 +78,7 @@
         if(data.message.conversation_id == current_conversation_id) {
           // message class
           const messageClass = data.message.sender.id === loggedinUserId ? 'you-message' : 'other-message';
-          
+
           const senderAvatar = data.message.sender.avatar ? `<img src="./uploads/avatars/${data.message.sender.avatar}" alt="${data.message.sender.name}" />` : `<img src="./images/nophoto.png" alt="${data.message.sender.name}" />`;
           // message attachments
           let attachments = '<div class="attachments">';
@@ -104,7 +104,7 @@
               <div class="message-time">${moment(data.message.date_time).fromNow()}</div>
             </div></div>`;
           }
-          // append the inoming message to message area as last item
+          // append the incoming message to message area as last item
           document.querySelector('#chat-message-list > .message-row:first-child').insertAdjacentHTML('beforeBegin', messageHTML);
         }
       });
@@ -119,7 +119,7 @@
         const result= await response.json();
         if(!result.errors && result.data) {
             form.style.visibility = 'visible';
-            
+
             const {data, user, conversation_id} = result;
             participant = data.participant;
             current_conversation_id = conversation_id;
@@ -134,7 +134,7 @@
                   let attachments = '<div class="attachments">';
                   if(message.attachment && message.attachment.length > 0) {
                     message.attachment.forEach(attachment => {
-                      attachments += `<img src="./uploads/attachments/${attachment}" /> `;
+                      attachments += `<img src="./uploads/attachments/${attachment}" alt=""/> `;
                     });
                   }
                   attachments += '</div>';

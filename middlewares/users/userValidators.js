@@ -9,7 +9,6 @@ const User = require("../../models/People");
 
 // add user
 const addUserValidators = [
-  // from express-validator documentation
   check("name")
     .isLength({ min: 1 })
     .withMessage("Name is required")
@@ -21,7 +20,6 @@ const addUserValidators = [
     .withMessage("Invalid email address")
     .trim()
     .custom(async (value) => {
-      // if user exist
       try {
         const user = await User.findOne({ email: value });
         if (user) {

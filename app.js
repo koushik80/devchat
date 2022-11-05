@@ -4,12 +4,11 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const path = require("path");
 const cookieParser = require("cookie-parser");
+
+// internal imports
 const loginRouter = require("./router/loginRouter");
 const usersRouter = require("./router/usersRouter");
 const inboxRouter = require("./router/inboxRouter");
-
-// internal imports
-
 const {
   notFoundHandler,
   errorHandler

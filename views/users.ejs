@@ -22,9 +22,9 @@
               <tr id="<%= user._id %>">
                 <td class="name">
                   <% if (user.avatar) { %>
-                    <img src="./uploads/avatars/<%= user.avatar %>" alt=""/>
+                    <img src="./uploads/avatars/<%= user.avatar %>" />
                   <% } else { %>
-                    <img src="./images/nophoto.png" alt=""/>
+                    <img src="./images/nophoto.png" />
                     <% } %>
                   <span><%= user.name %></span>
                 </td>
@@ -50,7 +50,7 @@
             text: "Could not delete the user!",
             duration: 3000,
         });
-
+        
         // delete user function
         async function deleteUser(userId) {
             let response = await fetch(`/users/${userId}`, {

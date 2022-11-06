@@ -35,7 +35,6 @@ async function addUser(req, res, next) {
       password: hashedPassword
     });
   }
-
   // save user or send error
   try {
     const result = await newUser.save();
@@ -46,7 +45,7 @@ async function addUser(req, res, next) {
     res.status(500).json({
       errors: {
         common: {
-          msg: "Unknown error occured!"
+          msg: "Unknown error occurred!"
         }
       }
     });
